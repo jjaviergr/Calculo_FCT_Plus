@@ -10,16 +10,17 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class PrincipalBlankActivity extends AppCompatActivity {
-    private EditText t1,t2,tNombre;
+public class DatosAlumnosActivity extends AppCompatActivity {
+    private EditText tNombre,tApellidos,tTelefono,tCorreo,tYearinicfct,tFinic,tFfin,tHpd,tndias,tHtFCT;
+
     private double uno=0,dos=0;
     private Bundle bundle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_blank);
+        setContentView(R.layout.activity_datos_alumnos);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
 /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -31,19 +32,27 @@ public class PrincipalBlankActivity extends AppCompatActivity {
         });
 */
         tNombre=(EditText)findViewById(R.id.edNombre);
-        t2=(EditText)findViewById(R.id.edHoras);
-        t1=(EditText)findViewById(R.id.edHorasFCT);
+        tApellidos=(EditText)findViewById(R.id.edApellidos);
+        tTelefono=(EditText)findViewById(R.id.edTelefono);
+        tCorreo=(EditText)findViewById(R.id.email);
+        tYearinicfct=(EditText)findViewById(R.id.edYearFCT);
+        tFinic=(EditText)findViewById(R.id.edFechaInic);
+        tFfin=(EditText)findViewById(R.id.edFechaFin);
+        tHpd=(EditText)findViewById(R.id.edHorasDia);
+        tndias=(EditText)findViewById(R.id.edDias);
+        tHtFCT=(EditText)findViewById(R.id.edHorasTfct);
+
         bundle=new Bundle();
     }
 
-    public void OnClick(View v)
+    public void OnClickCalcular(View v)
     {
         float uno=0;
         float dos=0;
         try
         {
             //Toast.makeText(getApplicationContext(),t1.getText().toString(), Toast.LENGTH_SHORT).show();
-            uno=Float.parseFloat(t1.getText().toString());
+            uno=Float.parseFloat(tHtFCT.getText().toString());
         }
         catch(Exception e) {
             Toast.makeText(getApplicationContext(),"El número de horas de la FCT no es valido", Toast.LENGTH_SHORT).show();
@@ -52,7 +61,7 @@ public class PrincipalBlankActivity extends AppCompatActivity {
 
         try
         {
-            dos=Float.parseFloat(t2.getText().toString());
+            dos=Float.parseFloat(tHpd.getText().toString());
         }
         catch(Exception e) {
             Toast.makeText(getApplicationContext(),"El número de horas de la jornada laboral no es un numero valido ", Toast.LENGTH_SHORT).show();
@@ -77,7 +86,7 @@ public class PrincipalBlankActivity extends AppCompatActivity {
             {
                 bundle.putString("nombre", tNombre.getText().toString());
                 bundle.putDouble("numero", uno / dos);
-                Intent intent = new Intent(this, ReceptorActivity.class);
+                Intent intent = new Intent(this, CalculoActivity.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -100,9 +109,6 @@ public class PrincipalBlankActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-
-
-
         if (id==R.id.opcion1) {
 
             String nombre=tNombre.getText().toString();
@@ -119,8 +125,8 @@ public class PrincipalBlankActivity extends AppCompatActivity {
         }
         try {
             if (id == R.id.opcion3) {
-                dos=Double.parseDouble(t2.getText().toString());
-                uno=Double.parseDouble(t1.getText().toString());
+                dos=Double.parseDouble(tHpd.getText().toString());
+                uno=Double.parseDouble(tHtFCT.getText().toString());
                 if (dos!=0)
                 {
                 double tres = uno / dos;
@@ -146,5 +152,10 @@ public class PrincipalBlankActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
 
+    }
+
+    public void onClickSalir(View v)
+    {
+        finish();
     }
 }

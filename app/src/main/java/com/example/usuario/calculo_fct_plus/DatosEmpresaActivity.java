@@ -6,24 +6,21 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import java.util.ArrayList;
+public class DatosEmpresaActivity extends DatosAlumnosActivity {
 
-public class Datos_Alumnos_SqLite_Activity extends AppCompatActivity {
-
-    private ArrayList<TextView> Lista_Tw;
-    private ArrayList<EditText> Lista_Et;
+    private EditText edNombreE,edNombreR,edApellidR,edEmail,edTelfR,edDireccionE,edDireccionWe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_datos__alumnos__sq_lite_);
+        setContentView(R.layout.activity_datos__empresa_);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -31,8 +28,19 @@ public class Datos_Alumnos_SqLite_Activity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+*/
+        edNombreE=(EditText)findViewById(R.id.edNombreEmpresa);
+        edNombreR=(EditText)findViewById(R.id.edNombreC);
+        edApellidR=(EditText)findViewById(R.id.edApellidosC);
+        edEmail=(EditText)findViewById(R.id.edEmail);
+        edTelfR=(EditText)findViewById(R.id.edTelefonoC);
+        edDireccionE=(EditText)findViewById(R.id.edDireccionEmpresa);
+        edDireccionWe=(EditText)findViewById(R.id.edWebEmpresa);
+    }
 
-
+    public void onclickSalir(View v)
+    {
+        finish();
     }
 
 }

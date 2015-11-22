@@ -6,15 +6,15 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ReceptorActivity extends AppCompatActivity {
-    private TextView t1,t2;
+public class CalculoActivity extends DatosAlumnosActivity {
+    private TextView tDias,tMensaje;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_receptor);
+        setContentView(R.layout.activity_calculo_);
 
-        t1=(TextView)findViewById(R.id.textView3);
-        t2=(TextView)findViewById(R.id.textView5);
+        tDias=(TextView)findViewById(R.id.edNumeroHoras);
+        tMensaje=(TextView)findViewById(R.id.edMensaje);
 
         Bundle bundle=getIntent().getExtras();
 
@@ -23,7 +23,7 @@ public class ReceptorActivity extends AppCompatActivity {
         {
 
             double n= (double)bundle.getDouble("numero");
-            t1.setText("Tu número de días es de "+n);
+            tDias.setText("Tu número de días es de "+n);
         }
         catch (Exception e)
         {
@@ -32,7 +32,7 @@ public class ReceptorActivity extends AppCompatActivity {
         String nombre=bundle.getString("nombre");
         char primero=nombre.toCharArray()[0];
         nombre=String.valueOf(primero).toUpperCase()+nombre.substring(1,nombre.length());
-         t2.setText("Hola "+nombre);
+         tMensaje.setText("Hola "+nombre);
         //Toast.makeText(getApplicationContext(), "El número de días es " + bundle.getFloat("numero"), Toast.LENGTH_SHORT).show();
         //finish();
     }

@@ -19,25 +19,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LogoActivity"
-            android:label="@string/title_activity_logo"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-        <activity
-            android:name=".Datos_Alumnos_SqLite_Activity"
-            android:label="@string/title_activity_datos__alumnos__sq_lite_"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-        <activity
-            android:name=".Datos_Empresa_Activity"
+            android:name=".DatosEmpresaActivity"
             android:label="@string/title_activity_datos__empresa_"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
-            android:name=".Calculo_Activity"
-            android:label="@string/title_activity_calculo_"
+            android:name=".DatosAlumnosActivity"
+            android:label="activity alumnos"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+        <activity
+            android:name=".CalculoActivity"
+            android:label="activity calculo"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".MainActivity" />
     </application>
 
 </manifest>
