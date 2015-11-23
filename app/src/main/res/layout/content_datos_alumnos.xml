@@ -215,22 +215,31 @@
             android:text="Actualizar"
             android:id="@+id/btActualizar" />
 
-        <Button
-            style="?android:attr/buttonStyleSmall"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Calcular"
-            android:id="@+id/btCalcular"
-            android:layout_gravity="center_horizontal"
-            android:onClick="OnClickCalcular"/>
+            android:layout_gravity="center_horizontal">
 
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Salir"
-            android:id="@+id/btSalir"
-            android:onClick="onClickSalir"/>
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Calcular"
+                android:id="@+id/btCalcular"
+                android:layout_gravity="center_horizontal"
+                android:onClick="OnClickCalcular"
+                android:layout_weight="1" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Salir"
+                android:id="@+id/btSalir"
+                android:onClick="onClickSalir"
+                android:layout_weight="1" />
+        </LinearLayout>
 
     </LinearLayout>
 
