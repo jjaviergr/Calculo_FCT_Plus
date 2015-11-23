@@ -5,4 +5,5 @@
     <string name="title_activity_datos__alumnos__sq_lite_">Datos_Alumnos_SqLite_Activity</string>
     <string name="title_activity_datos__empresa_">Datos_Empresa_Activity</string>
     <string name="title_activity_calculo_">Calculo_Activity</string>
+    <string name="title_activity_gestion_alumnos">GestionAlumnosActivity</string>
 </resources>

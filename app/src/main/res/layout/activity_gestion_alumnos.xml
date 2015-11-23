@@ -21,7 +21,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_datos_alumnos" />
+    <include layout="@layout/content_gestion_alumnos" />
 
    <!-- <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

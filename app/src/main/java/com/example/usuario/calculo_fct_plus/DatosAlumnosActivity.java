@@ -2,6 +2,8 @@ package com.example.usuario.calculo_fct_plus;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -11,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class DatosAlumnosActivity extends AppCompatActivity {
+
     private EditText tNombre,tApellidos,tTelefono,tCorreo,tYearinicfct,tFinic,tFfin,tHpd,tndias,tHtFCT;
 
     private double uno=0,dos=0;
@@ -18,33 +21,33 @@ public class DatosAlumnosActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_datos_alumnos);
+        setContentView(R.layout.activity_gestion_alumnos);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-/*
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
-*/
-        tNombre=(EditText)findViewById(R.id.edNombre);
-        tApellidos=(EditText)findViewById(R.id.edApellidos);
-        tTelefono=(EditText)findViewById(R.id.edTelefono);
-        tCorreo=(EditText)findViewById(R.id.email);
-        tYearinicfct=(EditText)findViewById(R.id.edYearFCT);
-        tFinic=(EditText)findViewById(R.id.edFechaInic);
-        tFfin=(EditText)findViewById(R.id.edFechaFin);
-        tHpd=(EditText)findViewById(R.id.edHorasDia);
-        tndias=(EditText)findViewById(R.id.edDias);
-        tHtFCT=(EditText)findViewById(R.id.edHorasTfct);
+        });*/
 
-        bundle=new Bundle();
+
+    tNombre=(EditText)findViewById(R.id.edNombre);
+    tApellidos=(EditText)findViewById(R.id.edApellidos);
+    tTelefono=(EditText)findViewById(R.id.edTelefono);
+    tCorreo=(EditText)findViewById(R.id.email);
+    tYearinicfct=(EditText)findViewById(R.id.edYearFCT);
+    tFinic=(EditText)findViewById(R.id.edFechaInic);
+    tFfin=(EditText)findViewById(R.id.edFechaFin);
+    tHpd=(EditText)findViewById(R.id.edHorasDia);
+    tndias=(EditText)findViewById(R.id.edDias);
+    tHtFCT=(EditText)findViewById(R.id.edHorasTfct);
+
+    bundle=new Bundle();
     }
-
     public void OnClickCalcular(View v)
     {
         float uno=0;
@@ -55,7 +58,7 @@ public class DatosAlumnosActivity extends AppCompatActivity {
             uno=Float.parseFloat(tHtFCT.getText().toString());
         }
         catch(Exception e) {
-            Toast.makeText(getApplicationContext(),"El número de horas de la FCT no es valido", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "El número de horas de la FCT no es valido", Toast.LENGTH_SHORT).show();
 
         }
 
@@ -129,8 +132,8 @@ public class DatosAlumnosActivity extends AppCompatActivity {
                 uno=Double.parseDouble(tHtFCT.getText().toString());
                 if (dos!=0)
                 {
-                double tres = uno / dos;
-                Toast.makeText(this, "Tu FCT va a ser de "+Double.toString(tres)+ " días", Toast.LENGTH_LONG).show();
+                    double tres = uno / dos;
+                    Toast.makeText(this, "Tu FCT va a ser de "+Double.toString(tres)+ " días", Toast.LENGTH_LONG).show();
                 }
                 else
                 {
@@ -158,4 +161,5 @@ public class DatosAlumnosActivity extends AppCompatActivity {
     {
         finish();
     }
+
 }
