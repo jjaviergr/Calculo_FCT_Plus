@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class DatosAlumnosActivity extends AppCompatActivity {
+public class DatosAlumnosActivity extends MainActivity {
 
     private EditText tNombre,tApellidos,tTelefono,tCorreo,tYearinicfct,tFinic,tFfin,tHpd,tndias,tHtFCT;
 
@@ -48,118 +48,80 @@ public class DatosAlumnosActivity extends AppCompatActivity {
 
     bundle=new Bundle();
     }
-    public void OnClickCalcular(View v)
+
+    public boolean es_float(String cadena)
     {
-        float uno=0;
-        float dos=0;
+        boolean es=false;
         try
         {
-            //Toast.makeText(getApplicationContext(),t1.getText().toString(), Toast.LENGTH_SHORT).show();
-            uno=Float.parseFloat(tHtFCT.getText().toString());
+            Float.parseFloat(cadena.toString());
+            es=true;
         }
-        catch(Exception e) {
+        catch(Exception e)
+        {}
+
+
+        return(es);
+    }
+
+
+    public void Validar()
+    {
+        boolean fallo=false;
+
+        if (!es_float(tHtFCT.getText().toString()))
+        {
             Toast.makeText(getApplicationContext(), "El número de horas de la FCT no es valido", Toast.LENGTH_SHORT).show();
-
+            fallo=true;
         }
 
-        try
+        if((!es_float(tHpd.getText().toString()))||(fallo))
         {
-            dos=Float.parseFloat(tHpd.getText().toString());
-        }
-        catch(Exception e) {
             Toast.makeText(getApplicationContext(),"El número de horas de la jornada laboral no es un numero valido ", Toast.LENGTH_SHORT).show();
-
+            fallo=true;
         }
 
+        float horas_fct=Float.parseFloat(tHtFCT.getText().toString());
+        float horas_p_d=Float.parseFloat(tHpd.getText().toString());
 
-        // ¿Existe  un limite de horas para la FCT????????????????? Si es asi falta poner una restricción.
-
-
-        if (dos>8)
+        if (((horas_p_d<=0) || (horas_p_d>8))||(fallo))
         {
             Toast.makeText(getApplicationContext(),"El número de horas debe ser <=8", Toast.LENGTH_SHORT).show();
+            fallo=true;
         }
-        else
+
+        if ((horas_fct<0 || horas_fct>2000)||(fallo))
         {
-            if (dos==0)
-            {
-                Toast.makeText(getApplicationContext(),"Trabajar gratis deberia ser ilegal", Toast.LENGTH_SHORT).show();
-            }
-            else
-            {
-                bundle.putString("nombre", tNombre.getText().toString());
-                bundle.putDouble("numero", uno / dos);
-                Intent intent = new Intent(this, CalculoActivity.class);
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
+            Toast.makeText(getApplicationContext(),"La FCT no puede durar mas de 2000 horas", Toast.LENGTH_SHORT).show();
+            fallo=true;
         }
+
+        if (!fallo)
+        {
+            bundle.putString("nombre", tNombre.getText().toString());
+            bundle.putString("apellidos", tNombre.getText().toString());
+            bundle.putString("telefono", tNombre.getText().toString());
+            bundle.putString("correo", tNombre.getText().toString());
+            bundle.putString("year_inicio_fct", tNombre.getText().toString());
+            bundle.putString("fecha_inicio", tNombre.getText().toString());
+
+            bundle.putString("fecha_fin", tNombre.getText().toString());
+            bundle.putDouble("horas_por_dia", horas_p_d);
+            bundle.putString("n_dias_fct", tNombre.getText().toString());
+            bundle.putDouble("horas_totales_fct", horas_fct);
+
+            Intent intent = new Intent(this, CalculoActivity.class);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
+
 
         //Toast.makeText(getApplicationContext(),"El número de días es : "+uno/dos, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main_blank, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        if (id==R.id.opcion1) {
-
-            String nombre=tNombre.getText().toString();
-            char primero=nombre.toCharArray()[0];
-            nombre=String.valueOf(primero).toUpperCase()+nombre.substring(1,nombre.length());
-            Toast.makeText(this, nombre, Toast.LENGTH_LONG).show();
-
-        }
-
-        if (id==R.id.opcion2) {
-
-            Toast.makeText(this,"Pedazo Empresa S.L.U",Toast.LENGTH_LONG).show();
-
-        }
-        try {
-            if (id == R.id.opcion3) {
-                dos=Double.parseDouble(tHpd.getText().toString());
-                uno=Double.parseDouble(tHtFCT.getText().toString());
-                if (dos!=0)
-                {
-                    double tres = uno / dos;
-                    Toast.makeText(this, "Tu FCT va a ser de "+Double.toString(tres)+ " días", Toast.LENGTH_LONG).show();
-                }
-                else
-                {
-                    Toast.makeText(this, "Por favor, mete los datos de las horas(las jornadas de 0 horas no se permiten.)", Toast.LENGTH_LONG).show();
-                }
-
-            }
-        }
-        catch(Exception e)
-        {
-            Toast.makeText(this, "Por favor, mete los datos de las horas(las jornadas de 0 horas no se permiten.)", Toast.LENGTH_LONG).show();
-        }
-        if (id==R.id.opcion4) {
-
-            Toast.makeText(this, "Hecho por José J. García Corporation S.L" ,Toast.LENGTH_LONG).show();
-
-        }
 
 
-        return super.onOptionsItemSelected(item);
 
-    }
 
-    public void onClickSalir(View v)
-    {
-        finish();
-    }
 
 }

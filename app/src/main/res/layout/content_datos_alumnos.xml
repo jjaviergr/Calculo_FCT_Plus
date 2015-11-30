@@ -212,8 +212,8 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Actualizar"
-            android:id="@+id/btActualizar" />
+            android:text="Calcular"
+            android:id="@+id/btCalcular" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -225,8 +225,8 @@
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Calcular"
-                android:id="@+id/btCalcular"
+                android:text="Grabar"
+                android:id="@+id/btGrabar"
                 android:layout_gravity="center_horizontal"
                 android:onClick="OnClickCalcular"
                 android:layout_weight="1" />

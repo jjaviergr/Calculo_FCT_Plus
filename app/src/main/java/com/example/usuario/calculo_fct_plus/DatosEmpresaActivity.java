@@ -5,7 +5,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 
-public class DatosEmpresaActivity extends DatosAlumnosActivity {
+public class DatosEmpresaActivity extends MainActivity {
 
     private EditText edNombreE,edNombreR,edApellidR,edEmail,edTelfR,edDireccionE,edDireccionWe;
 
@@ -34,9 +34,6 @@ public class DatosEmpresaActivity extends DatosAlumnosActivity {
         edDireccionWe=(EditText)findViewById(R.id.edWebEmpresa);
     }
 
-    public void onclickSalir(View v)
-    {
-        finish();
-    }
+
 
 }

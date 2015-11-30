@@ -39,17 +39,13 @@
             android:label="@string/title_activity_gestion_alumnos"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".RelacionaAlumnosActivity"
             android:label="@string/title_activity_relaciona_alumnos"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".PreferenciasPantallasActivity"
             android:label="@string/title_activity_preferencias_pantallas"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

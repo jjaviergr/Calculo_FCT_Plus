@@ -67,4 +67,6 @@
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="title_activity_relaciona_alumnos">RelacionaAlumnosActivity</string>
     <string name="title_activity_preferencias_pantallas">PreferenciasPantallasActivity</string>
+    <string name="title_item_list">Items</string>
+    <string name="title_item_detail">Item Detail</string>
 </resources>

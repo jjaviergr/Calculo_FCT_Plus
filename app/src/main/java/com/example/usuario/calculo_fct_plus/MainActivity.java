@@ -2,20 +2,15 @@ package com.example.usuario.calculo_fct_plus;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
-
-public class MainActivity extends DatosAlumnosActivity {
+import android.widget.Toast;
 
 
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +32,7 @@ public class MainActivity extends DatosAlumnosActivity {
 */
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+        //client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     /*@Override
@@ -81,45 +76,54 @@ public class MainActivity extends DatosAlumnosActivity {
 //        Intent intent = new Intent(this, CalculoActivity.class);
 //        startActivity(intent);
     }
-/*
-    @Override
-    public void onStart() {
-        super.onStart();
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Main Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://com.example.usuario.calculo_fct_plus/http/host/path")
-        );
-        AppIndex.AppIndexApi.start(client, viewAction);
+@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+    // Handle action bar item clicks here. The action bar will
+    // automatically handle clicks on the Home/Up button, so long
+    // as you specify a parent activity in AndroidManifest.xml.
+    int id = item.getItemId();
+
+    if (id==R.id.opcion1) {
+
+       /* String nombre=tNombre.getText().toString();
+        char primero=nombre.toCharArray()[0];
+        nombre=String.valueOf(primero).toUpperCase()+nombre.substring(1,nombre.length());*/
+        Toast.makeText(this, "uno", Toast.LENGTH_LONG).show();
+
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
+    if (id==R.id.opcion2) {
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Main Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://com.example.usuario.calculo_fct_plus/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
+        Toast.makeText(this,"Pedazo Empresa S.L.U",Toast.LENGTH_LONG).show();
+
     }
-    */
+
+        if (id == R.id.opcion3) {
+            Toast.makeText(this, "3", Toast.LENGTH_LONG).show();
+
+        }
+
+    if (id==R.id.opcion4) {
+
+        Toast.makeText(this, "Hecho por José J. García Corporation S.L" ,Toast.LENGTH_LONG).show();
+
+    }
+
+
+    return super.onOptionsItemSelected(item);
+
+}
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main_blank, menu);
+        return true;
+    }
+
+    public void onClickSalir(View v)
+    {
+        finish();
+    }
 }
