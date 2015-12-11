@@ -5,7 +5,7 @@ package com.example.usuario.calculo_fct_plus;
  */
 public class Alumno 
 {
-    private String Numero;
+    private long Numero;
     private String Nombre;
     private String Apellidos;
     private String Telefono;
@@ -115,11 +115,11 @@ public Alumno()
         HorasTfct = horasTfct;
     }
 
-    public String getNumero() {
+    public long getNumero() {
         return Numero;
     }
 
-    public void setNumero(String numero) {
+    public void setNumero(long numero) {
         Numero = numero;
     }
 }

@@ -49,7 +49,7 @@ public class GestionadorBD
 
     private static final String DATABASE_CREATE =
             "create table "+DATABASE_TABLE_EMPRESAS+
-                    " ("+KEY_EMPRESAS_ROWID+" number, "
+                    " ("+KEY_EMPRESAS_ROWID+" integer primary key autoincrement, "
                     +KEY_EMPRESAS_NOMBRE_EMPRESA+" text , "
                     +KEY_EMPRESAS_NOMBRE_RESPONSABLE+" text , "
                     +KEY_EMPRESAS_APELLIDOS+" text , "
@@ -59,7 +59,7 @@ public class GestionadorBD
                     +KEY_EMPRESAS_WEB+" text);" +
                     "" +
                     "create table "+DATABASE_TABLE_ALUMNOS+"" +
-                    "("+KEY_ALUMNOS_ROWID+" number, "
+                    "("+KEY_ALUMNOS_ROWID+" integer primary key autoincrement, "
                     +KEY_ALUMNOS_NOMBRE+" text , "
                     +KEY_ALUMNOS_APELLIDOS+" text , "
                     +KEY_ALUMNOS_TELEFONO+" text , "
@@ -287,7 +287,7 @@ public class GestionadorBD
     //genera una Empresa a partir de un objeto Cursor
     public Empresa cursorToEmpresa(Cursor cursor) {
         Empresa e = new Empresa();
-        e.setNumero(cursor.getString(0));
+        e.setNumero(cursor.getLong(0));
         e.setNombreE(cursor.getString(1));
         e.setNombreR(cursor.getString(2));
         e.setApellidos(cursor.getString(3));
@@ -302,7 +302,7 @@ public class GestionadorBD
     //genera un contacto a partir de un objeto Cursor
     public Alumno cursorToAlumno(Cursor cursor) {
         Alumno a = new Alumno();
-        a.setNumero(cursor.getString(0));
+        a.setNumero(cursor.getLong(0));
         a.setNombre(cursor.getString(1));
         a.setApellidos(cursor.getString(2));
         a.setTelefono(cursor.getString(3));
