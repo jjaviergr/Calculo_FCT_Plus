@@ -21,31 +21,38 @@
         <activity
             android:name=".DatosEmpresaActivity"
             android:label="@string/title_activity_datos__empresa_"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleInstance"
+            />
         <activity
             android:name=".CalculoActivity"
-            android:label="activity calculo"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <!--
-             ATTENTION: This was auto-generated to add Google Play services to your project for
-             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
-        -->
+            android:label="CalculoActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleInstance"
+            />
+
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value=".MainActivity" />
 
         <activity
             android:name=".DatosAlumnosActivity"
-            android:label="@string/title_activity_gestion_alumnos"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="DatosAlumnosActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleInstance"
+            />
         <activity
             android:name=".RelacionaAlumnosActivity"
             android:label="@string/title_activity_relaciona_alumnos"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleInstance"
+            />
         <activity
             android:name=".PreferenciasPantallasActivity"
             android:label="@string/title_activity_preferencias_pantallas"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleInstance"
+            />
     </application>
 
 </manifest>

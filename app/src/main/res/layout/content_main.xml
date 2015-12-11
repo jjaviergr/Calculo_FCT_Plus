@@ -19,8 +19,8 @@
         android:weightSum="1">
 
         <ImageView
-            android:layout_width="211dp"
-            android:layout_height="149dp"
+            android:layout_width="365dp"
+            android:layout_height="204dp"
             android:id="@+id/imageView"
             android:layout_gravity="center_horizontal"
             android:src="@mipmap/ando2" />
@@ -42,14 +42,14 @@
             android:layout_alignParentLeft="true"
             android:onClick="btAlumnosOnclick"
             android:nestedScrollingEnabled="false" />
-
+<!--
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Calcular"
             android:id="@+id/btCalcular"
             android:onClick="btCalculosOnclick" />
-
+-->
         <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_width="match_parent"
@@ -62,17 +62,17 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ver datos Grabados"
-            android:id="@+id/btVer"
+            android:text="Gestión de Preferencias"
+            android:id="@+id/btPreferences"
             android:layout_gravity="center_horizontal" />
-
+<!--
         <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Configurar Pantalla"
             android:id="@+id/btConfigura" />
-
+-->
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

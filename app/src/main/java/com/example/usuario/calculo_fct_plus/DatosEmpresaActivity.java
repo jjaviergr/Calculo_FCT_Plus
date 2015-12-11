@@ -16,6 +16,8 @@ public class DatosEmpresaActivity extends MainActivity {
     private Cursor c;
     private Button btActualizar;
 
+    private long id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,16 +44,17 @@ public class DatosEmpresaActivity extends MainActivity {
 
         btActualizar=(Button)findViewById(R.id.btActualizar);
 
-        try {
+        try
+        {
             BD = new GestionadorBD(this);
         }
         catch(Exception ex)
         {
             Toast.makeText(this, "Error al crear la BD "+ex,Toast.LENGTH_SHORT).show();
         }
-        try {
+        try
+        {
             //abre la BD
-
             BD.open();
         }
         catch(Exception ex)
@@ -98,7 +101,7 @@ public class DatosEmpresaActivity extends MainActivity {
 
     public void btSiguienteOnClick(View v)
     {
-        if (!c.isAfterLast()) {
+        if (!c.isLast()) {
             c.moveToNext();
             actualizar_interface(c);
 
@@ -112,7 +115,7 @@ public class DatosEmpresaActivity extends MainActivity {
 
     public void btAnteriorOnClick(View v)
     {
-        if (!c.isBeforeFirst()) {
+        if (!c.isFirst()) {
             c.moveToPrevious();
             actualizar_interface(c);
         }
@@ -142,6 +145,7 @@ public class DatosEmpresaActivity extends MainActivity {
 
     public void OnClickBtActualizar(View v)
     {
+
         Empresa e=new Empresa( edNombreE.getText().toString(),edNombreR.getText().toString(),
                 edApellidR.getText().toString(),edEmail.getText().toString(),
                 edTelfR.getText().toString(),edDireccionE.getText().toString(),
@@ -164,24 +168,9 @@ public class DatosEmpresaActivity extends MainActivity {
         else
         {
             //para actualizar.
-
-            String cadena= null;
             try
             {
-                cadena = c.getString(0);
-            } catch (Exception e1) {
-                Toast.makeText(this, "Fallo al acceder a elemento 0",Toast.LENGTH_SHORT).show();;
-            }
-
-            /*try {
-                e.setNumero(Long.parseLong(cadena));
-            } catch (NumberFormatException e1) {
-                Toast.makeText(this, "Fallo en conversion de indice "+cadena,Toast.LENGTH_SHORT).show();;
-            }*/
-
-            try
-            {
-                c.moveToPrevious();
+                e.setNumero(c.getLong(0));
                 BD.actualizarEmpresa(e);
                 Toast.makeText(this, "Empresa actualizada con exito",Toast.LENGTH_SHORT).show();
             }
@@ -195,9 +184,16 @@ public class DatosEmpresaActivity extends MainActivity {
     @Override
     public void onDestroy()
     {
-        super.onDestroy();
         c.close();
         BD.close();
+        super.onDestroy();
     }
+    @Override
+    public void onPause()
+    {
+        finish();
+        super.onPause();
+    }
+
 
 }

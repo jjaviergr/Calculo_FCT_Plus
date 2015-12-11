@@ -8,17 +8,21 @@
     <item
         android:id="@+id/opcion1"
         app:showAsAction="never"
-        android:title="Datos del alumno"/>
+        android:title="Gestión Empresas"/>
     <item
         android:id="@+id/opcion2"
         app:showAsAction="never"
-        android:title="Datos de la empresa"/>
+        android:title="Gestión Alumnos"/>
     <item
         android:id="@+id/opcion3"
         app:showAsAction="never"
-        android:title="Calcular"/>
+        android:title="Asociar Alumnos-Empresa"/>
     <item
         android:id="@+id/opcion4"
+        app:showAsAction="never"
+        android:title="Volver al principal"/>
+    <item
+        android:id="@+id/opcion5"
         app:showAsAction="never"
         android:title="Acerca de"/>
 </menu>

@@ -1,6 +1,8 @@
 package com.example.usuario.calculo_fct_plus;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.SQLException;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,8 +11,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class DatosAlumnosActivity extends MainActivity {
 
@@ -18,8 +23,16 @@ public class DatosAlumnosActivity extends MainActivity {
 
     private double uno=0,dos=0;
     private Bundle bundle;
+
+    private long id;
+    private GestionadorBD BD;
+    private Cursor c;
+
+    private Button BtGrabar;
+    
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) 
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datos_alumnos);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -34,36 +47,232 @@ public class DatosAlumnosActivity extends MainActivity {
             }
         });*/
 
+        tNombre=(EditText)findViewById(R.id.edNombre);
+        tApellidos=(EditText)findViewById(R.id.edApellidos);
+        tTelefono=(EditText)findViewById(R.id.edTelefono);
+        tCorreo=(EditText)findViewById(R.id.email);
+        tYearinicfct=(EditText)findViewById(R.id.edYearFCT);
+        tFinic=(EditText)findViewById(R.id.edFechaInic);
+        tFfin=(EditText)findViewById(R.id.edFechaFin);
+        tHpd=(EditText)findViewById(R.id.edHorasDia);
+        tndias=(EditText)findViewById(R.id.edDias);
+        tHtFCT=(EditText)findViewById(R.id.edHorasTfct);
 
-    tNombre=(EditText)findViewById(R.id.edNombre);
-    tApellidos=(EditText)findViewById(R.id.edApellidos);
-    tTelefono=(EditText)findViewById(R.id.edTelefono);
-    tCorreo=(EditText)findViewById(R.id.email);
-    tYearinicfct=(EditText)findViewById(R.id.edYearFCT);
-    tFinic=(EditText)findViewById(R.id.edFechaInic);
-    tFfin=(EditText)findViewById(R.id.edFechaFin);
-    tHpd=(EditText)findViewById(R.id.edHorasDia);
-    tndias=(EditText)findViewById(R.id.edDias);
-    tHtFCT=(EditText)findViewById(R.id.edHorasTfct);
+        BtGrabar=(Button)findViewById(R.id.btGrabar);
+        
 
-    bundle=new Bundle();
-    }
+    
+        bundle=new Bundle(); //Esto es para el calculo de horas
 
-    public boolean es_float(String cadena)
-    {
-        boolean es=false;
         try
         {
-            Float.parseFloat(cadena.toString());
-            es=true;
+            BD = new GestionadorBD(this);
         }
-        catch(Exception e)
-        {}
+        catch (Exception e)
+        {
+            Toast.makeText(this, "Ocurrio un error al crear la BD "+e,Toast.LENGTH_SHORT).show();
+        }
 
 
-        return(es);
+        try
+        {
+            BD.open();
+        }
+        catch (SQLException e)
+        {
+            Toast.makeText(this, "Ocurrio un error al abrir la BD "+e,Toast.LENGTH_SHORT).show();
+        }
+
+        try
+        {
+            c = BD.getTodoslosAlumnos();
+            if (c.getCount()>0)
+            {
+                c.moveToFirst();
+                actualizar_interface(c);
+                BtGrabar.setText("ACTUALIZAR");
+            }
+            else
+            {
+                BtGrabar.setText("GUARDAR");
+                //Toast.makeText(this, "Sin registros ",Toast.LENGTH_SHORT).show();
+            }
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(this, "Ocurrio un error al recuperar a los alumnos "+e,Toast.LENGTH_SHORT).show();
+        }
+
+
     }
 
+    public void OnClickNuevoAlumno(View v)
+    {
+        tNombre.setText("");
+        tApellidos.setText("");
+        tTelefono.setText("");
+        tCorreo.setText("");
+        tYearinicfct.setText("");
+        tFinic.setText("");
+        tFfin.setText("");
+        tHpd.setText("");
+        tndias.setText("");
+        tHtFCT.setText("");
+
+        BtGrabar.setText("GUARDAR");
+    }
+
+    public void actualizar_interface(Cursor c)
+    {
+        tNombre.setText(c.getString(1));
+        tApellidos.setText(c.getString(2));
+        tTelefono.setText(c.getString(3));
+        tCorreo.setText(c.getString(4));
+        tYearinicfct.setText(c.getString(5));
+        tFinic.setText(c.getString(6));
+        tFfin.setText(c.getString(7));
+        tHpd.setText(c.getString(8));
+        tndias.setText(c.getString(9));
+        tHtFCT.setText(c.getString(10));
+
+
+    }
+
+    public void btAlumnoSiguienteOnClick(View v)
+    {
+        try
+        {
+            if (!c.isLast())
+            {
+                c.moveToNext();
+                actualizar_interface(c);
+
+            }
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(this, "No hay mas registros despues que este",Toast.LENGTH_SHORT).show();
+
+        }
+
+    }
+
+    public void OnAlumnoClickGuardar(View v)
+    {
+        Alumno a=new Alumno(tNombre.getText().toString(),tApellidos.getText().toString(),
+                tTelefono.getText().toString(),tCorreo.getText().toString(),
+                tYearinicfct.getText().toString(),tFinic.getText().toString(),
+                tFfin.getText().toString(),tHpd.getText().toString(),tndias.getText().toString(),
+                tHtFCT.getText().toString());
+
+        if (BtGrabar.getText().toString().equalsIgnoreCase("Guardar"))
+        {
+            //para guardar
+            try
+            {
+                BD.insertarAlumno(a);
+                Toast.makeText(this, "Alumno guardado con exito",Toast.LENGTH_SHORT).show();
+                BtGrabar.setText("Actualizar");
+            }
+            catch(Exception ex)
+            {
+                Toast.makeText(this, "Ocurrio un error al guardar Alumno "+ex,Toast.LENGTH_SHORT).show();
+            }
+
+        }
+        else
+        {
+            //para actualizar.
+            try
+            {
+                a.setNumero(c.getLong(0));
+                BD.actualizarAlumno(a);
+                Toast.makeText(this, "Alumno actualizado con exito",Toast.LENGTH_SHORT).show();
+            }
+            catch(Exception ex)
+            {
+                Toast.makeText(this, "Ocurrio un error al actualizar Alumno"+ex,Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    public void btAlumnoAnteriorOnClick(View v)
+    {
+        try
+        {
+            if (!c.isFirst())
+            {
+                c.moveToPrevious();
+                actualizar_interface(c);
+            }
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(this, "No hay mas registros antes que este",Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+
+    public void limpiar_interface()
+    {
+        tNombre.setText("");
+        tApellidos.setText("");
+        tTelefono.setText("");
+        tCorreo.setText("");
+        tYearinicfct.setText("");
+        tFinic.setText("");
+        tFfin.setText("");
+        tHpd.setText("");
+        tndias.setText("");
+        tHtFCT.setText("");
+    }
+
+    public void btNuevaEmpresa(View v)
+    {
+        limpiar_interface();
+        BtGrabar.setText("Guardar");
+
+    }
+
+
+
+    @Override
+    public void onDestroy()
+    {
+        c.close();
+        BD.close();
+        super.onDestroy();
+    }
+
+    public void onClickAlumnoCalcular(View v)
+    {
+
+        ArrayList<String> lista_Datos=new ArrayList<String>();
+
+        lista_Datos.add(tNombre.getText().toString());
+        lista_Datos.add(tApellidos.getText().toString());
+        lista_Datos.add(tHtFCT.getText().toString());
+        lista_Datos.add(tHpd.getText().toString());
+
+        Intent i=new Intent(this,CalculoActivity.class);
+
+        Bundle bundle = new Bundle();
+        bundle.putStringArrayList("datos", lista_Datos);
+
+        i.putExtras(bundle);
+
+        startActivity(i);
+
+    }
+
+    @Override
+    public void onPause()
+    {
+        finish();
+        super.onPause();
+    }
+    /*
 
     public void Validar()
     {
@@ -115,9 +324,9 @@ public class DatosAlumnosActivity extends MainActivity {
             startActivity(intent);
         }
 
-
+*/
         //Toast.makeText(getApplicationContext(),"El número de días es : "+uno/dos, Toast.LENGTH_SHORT).show();
-    }
+
 
 
 

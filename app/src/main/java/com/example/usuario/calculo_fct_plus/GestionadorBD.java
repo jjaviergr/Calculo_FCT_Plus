@@ -30,6 +30,7 @@ public class GestionadorBD
     public static final String KEY_ALUMNOS_HORASPD="HorasPd";
     public static final String KEY_ALUMNOS_NUMDIAS="NumDias";
     public static final String KEY_ALUMNOS_HorasTFCT="Tfct";
+    public static final String KEY_FORANEA_EMPRESA="key_empresa";
 
     public static final String KEY_EMPRESAS_ROWID = "id";
     public static final String KEY_EMPRESAS_NOMBRE_EMPRESA = "nombreE";
@@ -47,7 +48,7 @@ public class GestionadorBD
     private static final String DATABASE_TABLE_ALUMNOS = "alumnos";
     private static final int DATABASE_VERSION = 1;
 
-    private static final String DATABASE_CREATE =
+    private static final String DATABASE_CREATE_TABLE_EMPRESAS =
             "create table "+DATABASE_TABLE_EMPRESAS+
                     " ("+KEY_EMPRESAS_ROWID+" integer primary key autoincrement, "
                     +KEY_EMPRESAS_NOMBRE_EMPRESA+" text , "
@@ -56,10 +57,11 @@ public class GestionadorBD
                     +KEY_EMPRESAS_EMAIL+" text , "
                     +KEY_EMPRESAS_TELEFONO+" text , "
                     +KEY_EMPRESAS_DIRECCION+" text , "
-                    +KEY_EMPRESAS_WEB+" text);" +
-                    "" +
-                    "create table "+DATABASE_TABLE_ALUMNOS+"" +
-                    "("+KEY_ALUMNOS_ROWID+" integer primary key autoincrement, "
+                    +KEY_EMPRESAS_WEB+" text)";
+
+    private static final String DATABASE_CREATE_TABLE_ALUMNOS =
+                    " create table "+DATABASE_TABLE_ALUMNOS+"" +
+                    " ("+KEY_ALUMNOS_ROWID+" integer primary key autoincrement, "
                     +KEY_ALUMNOS_NOMBRE+" text , "
                     +KEY_ALUMNOS_APELLIDOS+" text , "
                     +KEY_ALUMNOS_TELEFONO+" text , "
@@ -69,7 +71,8 @@ public class GestionadorBD
                     +KEY_ALUMNOS_FFIN+" text , "
                     +KEY_ALUMNOS_HORASPD+" text , "
                     +KEY_ALUMNOS_NUMDIAS+" text , "
-                    +KEY_ALUMNOS_HorasTFCT+" text )";
+                    +KEY_ALUMNOS_HorasTFCT+" text ,"
+                    +KEY_FORANEA_EMPRESA+" integer );";
                     
 
     private final Context context;
@@ -78,7 +81,7 @@ public class GestionadorBD
     private String[] todasColumnas_alumnos =new String[] {KEY_ALUMNOS_ROWID,KEY_ALUMNOS_NOMBRE,
             KEY_ALUMNOS_APELLIDOS,KEY_ALUMNOS_TELEFONO,KEY_ALUMNOS_CORREO,KEY_ALUMNOS_YEARINICIOFCT,
             KEY_ALUMNOS_FINIC,KEY_ALUMNOS_FFIN,KEY_ALUMNOS_HORASPD,KEY_ALUMNOS_NUMDIAS,
-            KEY_ALUMNOS_HorasTFCT};
+            KEY_ALUMNOS_HorasTFCT,KEY_FORANEA_EMPRESA};
 
     private String[] todasColumnas_empresas =new String[] {KEY_EMPRESAS_ROWID,
             KEY_EMPRESAS_NOMBRE_EMPRESA,KEY_EMPRESAS_NOMBRE_RESPONSABLE,KEY_EMPRESAS_APELLIDOS,
@@ -193,7 +196,7 @@ public class GestionadorBD
         return bsSql.update(DATABASE_TABLE_EMPRESAS, args,KEY_EMPRESAS_ROWID + "=" + emp.getNumero(), null) > 0;
     }
     //actualiza los datos de un Alumno en concreto
-    public boolean actualizarContacto(Alumno a){
+    public boolean actualizarAlumno(Alumno a){
         ContentValues args = new ContentValues();
         args.put(KEY_ALUMNOS_NOMBRE, a.getNombre());
         args.put(KEY_ALUMNOS_APELLIDOS, a.getApellidos());
@@ -264,8 +267,8 @@ public class GestionadorBD
     }
 
     //Obtiene una lista de Alumnos a través de un objeto Cursor
-    public List<Alumno> getAllContactos() {
-        //Lista de contactos
+    public List<Alumno> getAllAlumnos() {
+        //Lista de alumnos
         List<Alumno> listaAlumnos = new ArrayList<Alumno>();
         //objeto cursor que se llena con el resultado de la consulta que obtiene todos los contactos
         Cursor cursor = this.getTodoslosAlumnos();
@@ -330,7 +333,8 @@ public class GestionadorBD
         public void onCreate(SQLiteDatabase db)	{
             try{
                 //ejecuta la sentencia SQL de creación de la BD
-                db.execSQL(DATABASE_CREATE);
+                db.execSQL(DATABASE_CREATE_TABLE_EMPRESAS);
+                db.execSQL(DATABASE_CREATE_TABLE_ALUMNOS);
             }catch(SQLException e){
                 e.printStackTrace();
             }

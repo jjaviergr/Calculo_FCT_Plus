@@ -31,4 +31,11 @@ public class RelacionaAlumnosActivity extends MainActivity {
 
     }
 
+    @Override
+    public void onPause()
+    {
+        finish();
+        super.onPause();
+    }
+
 }

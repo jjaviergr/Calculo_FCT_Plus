@@ -33,8 +33,9 @@
                 android:ems="10"
                 android:id="@+id/edNombre"
                 android:hint="Nombre"
-                android:enabled="false"
-                android:layout_weight="0.5" />
+                android:enabled="true"
+                android:layout_weight="0.5"
+                android:clickable="false" />
 
             <EditText
 
@@ -44,9 +45,10 @@
                 android:ems="10"
                 android:id="@+id/edApellidos"
                 android:hint="Apellidos"
-                android:enabled="false"
+                android:enabled="true"
                 android:layout_weight="0.5"
-                android:layout_gravity="right" />
+                android:layout_gravity="right"
+                android:clickable="false" />
 
         </LinearLayout>
 
@@ -59,11 +61,11 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"
                 android:ems="10"
                 android:id="@+id/email"
                 android:hint="Correo Electronico"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:inputType="textEmailAddress|textEmailSubject" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -83,7 +85,7 @@
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="date"
+                android:inputType="date|time"
                 android:ems="10"
                 android:id="@+id/edYearFCT"
                 android:hint="Año inicio FCT"
@@ -108,7 +110,7 @@
             <EditText
                 android:layout_width="167dp"
                 android:layout_height="wrap_content"
-                android:inputType="date"
+                android:inputType="date|time"
                 android:ems="10"
                 android:id="@+id/edFechaInic"
                 android:hint="Fecha Inicio"
@@ -119,7 +121,7 @@
             <EditText
                 android:layout_width="167dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="date|number|time"
                 android:ems="10"
                 android:id="@+id/edFechaFin"
                 android:hint="Fecha Final"
@@ -138,7 +140,7 @@
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="number|numberDecimal"
                 android:ems="10"
                 android:id="@+id/edHorasDia"
                 android:hint="Horas por Día"
@@ -149,7 +151,7 @@
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="number|numberDecimal"
                 android:ems="10"
                 android:id="@+id/edDias"
 
@@ -162,7 +164,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
+<!--
             <SeekBar
                 android:layout_width="162dp"
                 android:layout_height="wrap_content"
@@ -173,7 +175,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/seekBar2"
-                android:layout_weight="1" />
+                android:layout_weight="1" />-->
         </LinearLayout>
 
         <Button
@@ -182,7 +184,8 @@
             android:layout_height="wrap_content"
             android:text="Nuevo Alumno"
             android:id="@+id/btNuevo"
-            android:hint="Pulsa aqui para añadir un nuevo alumno" />
+            android:hint="Pulsa aqui para añadir un nuevo alumno"
+            android:onClick="OnClickNuevoAlumno" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -195,17 +198,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Anterior"
-                android:id="@+id/btAnterior"
-                android:layout_weight="0.50" />
+                android:id="@+id/btAnteriorAlumnos"
+                android:layout_weight="0.50"
+                android:onClick="btAlumnoAnteriorOnClick" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Siguiente"
-                android:id="@+id/btSiguiente"
+                android:id="@+id/btSiguienteAlumnos"
                 android:layout_gravity="center_horizontal"
-                android:layout_weight="0.50" />
+                android:layout_weight="0.50"
+                android:onClick="btAlumnoSiguienteOnClick" />
         </LinearLayout>
 
         <Button
@@ -213,7 +218,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Calcular"
-            android:id="@+id/btCalcular" />
+            android:id="@+id/btCalcular"
+            android:onClick="onClickAlumnoCalcular" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -228,7 +234,7 @@
                 android:text="Grabar"
                 android:id="@+id/btGrabar"
                 android:layout_gravity="center_horizontal"
-                android:onClick="OnClickCalcular"
+                android:onClick="OnAlumnoClickGuardar"
                 android:layout_weight="1" />
 
             <Button

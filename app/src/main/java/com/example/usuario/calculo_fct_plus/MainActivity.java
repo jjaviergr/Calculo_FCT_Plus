@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -49,33 +48,64 @@ public boolean onOptionsItemSelected(MenuItem item) {
     // automatically handle clicks on the Home/Up button, so long
     // as you specify a parent activity in AndroidManifest.xml.
     int id = item.getItemId();
+    Intent i;
 
-    if (id==R.id.opcion1) {
 
-       /* String nombre=tNombre.getText().toString();
-        char primero=nombre.toCharArray()[0];
-        nombre=String.valueOf(primero).toUpperCase()+nombre.substring(1,nombre.length());*/
-        Toast.makeText(this, "uno", Toast.LENGTH_LONG).show();
+        if (id==R.id.opcion1) // Acceder a gestión de empresas
+        {
+            i = new Intent(this, DatosEmpresaActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(i);
+            if (this instanceof MainActivity)
+            {
+                Toast.makeText(this,"instanci",Toast.LENGTH_LONG).show();
+            }
+        }
 
-    }
+    /*else
+    {
+        Toast.makeText(this,"Estas en Gestión de Empresas",Toast.LENGTH_LONG).show();
+    }*/
 
-    if (id==R.id.opcion2) {
 
-        Toast.makeText(this,"Pedazo Empresa S.L.U",Toast.LENGTH_LONG).show();
+        if (id==R.id.opcion2) // Acceder a gestión de alumnos
+        {
+            i = new Intent(this, DatosAlumnosActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(i);
 
-    }
-
-        if (id == R.id.opcion3) {
-            Toast.makeText(this, "3", Toast.LENGTH_LONG).show();
 
         }
 
-    if (id==R.id.opcion4) {
+    /*else
+    {
+        Toast.makeText(this,"Estas en Gestión de Alumnos",Toast.LENGTH_LONG).show();
+    }*/
 
-        Toast.makeText(this, "Hecho por José J. García Corporation S.L" ,Toast.LENGTH_LONG).show();
+
+        if (id == R.id.opcion3) // Acceder a relacionar alumnos con empresas
+        {
+            i = new Intent(this, RelacionaAlumnosActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);;
+            startActivity(i);
+
+        }
+
+    /*else
+    {
+        Toast.makeText(this,"Estas en Relaciona Alumnos-Empresa",Toast.LENGTH_LONG).show();
+    }*/
+
+    if (id==R.id.opcion4) // Salir del programa
+    {
+
+      finish();
 
     }
 
+    if (id==R.id.opcion5) // Credito al Autor.
+    {
+
+        Toast.makeText(this, "Hecho por José Javier García Romero" ,Toast.LENGTH_LONG).show();
+
+    }
 
     return super.onOptionsItemSelected(item);
 
