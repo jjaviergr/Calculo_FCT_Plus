@@ -5,7 +5,7 @@ package com.example.usuario.calculo_fct_plus;
  */
 public class Empresa
 {
-    private long numero;
+    private String numero;
     private String NombreE;
     private String NombreR;
     private String Apellidos;
@@ -89,11 +89,11 @@ public class Empresa
         NombreR = nombreR;
     }
 
-    public long getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(long numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 }

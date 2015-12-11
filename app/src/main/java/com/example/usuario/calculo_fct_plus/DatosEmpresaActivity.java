@@ -67,8 +67,17 @@ public class DatosEmpresaActivity extends MainActivity {
         {
             Toast.makeText(this, "Error al recuperar las empresas "+ex,Toast.LENGTH_SHORT).show();
         }
+        if (c.getCount()!=0)
+        {
+            c.moveToFirst();
+            actualizar_interface(c);
+        }
+        else
+        {
+            btActualizar.setText("Guardar");
+            //Toast.makeText(this, "Sin registros ",Toast.LENGTH_SHORT).show();
+        }
 
-        //actualizar_interface(c);
 
         /*//inserta un nuevo contacto
         db.insertarContacto(nombre, tipo, tlf);
@@ -89,9 +98,10 @@ public class DatosEmpresaActivity extends MainActivity {
 
     public void btSiguienteOnClick(View v)
     {
-        if (!c.isClosed() && !c.isLast()) {
+        if (!c.isAfterLast()) {
             c.moveToNext();
             actualizar_interface(c);
+
         }
         else
         {
@@ -102,7 +112,7 @@ public class DatosEmpresaActivity extends MainActivity {
 
     public void btAnteriorOnClick(View v)
     {
-        if (!c.isClosed() && (!c.isFirst() || !c.isBeforeFirst())) {
+        if (!c.isBeforeFirst()) {
             c.moveToPrevious();
             actualizar_interface(c);
         }
@@ -154,10 +164,24 @@ public class DatosEmpresaActivity extends MainActivity {
         else
         {
             //para actualizar.
-            String cadena=c.getString(0);
-            e.setNumero(Long.parseLong(cadena));
+
+            String cadena= null;
             try
             {
+                cadena = c.getString(0);
+            } catch (Exception e1) {
+                Toast.makeText(this, "Fallo al acceder a elemento 0",Toast.LENGTH_SHORT).show();;
+            }
+
+            /*try {
+                e.setNumero(Long.parseLong(cadena));
+            } catch (NumberFormatException e1) {
+                Toast.makeText(this, "Fallo en conversion de indice "+cadena,Toast.LENGTH_SHORT).show();;
+            }*/
+
+            try
+            {
+                c.moveToPrevious();
                 BD.actualizarEmpresa(e);
                 Toast.makeText(this, "Empresa actualizada con exito",Toast.LENGTH_SHORT).show();
             }
@@ -172,6 +196,7 @@ public class DatosEmpresaActivity extends MainActivity {
     public void onDestroy()
     {
         super.onDestroy();
+        c.close();
         BD.close();
     }
 
