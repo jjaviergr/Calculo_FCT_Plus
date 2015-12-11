@@ -94,7 +94,8 @@
             android:layout_height="wrap_content"
             android:text="Nueva Empresa"
             android:id="@+id/btNuevaEmpresa"
-            android:hint="Pulsa aqui para añadir un nuevo alumno" />
+            android:hint="Pulsa aqui para añadir un nuevo alumno"
+            android:onClick="btNuevaEmpresa" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -108,7 +109,8 @@
                 android:layout_height="wrap_content"
                 android:text="Anterior"
                 android:id="@+id/btAnterior"
-                android:layout_weight="0.50" />
+                android:layout_weight="0.50"
+                android:onClick="btAnteriorOnClick" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
@@ -117,7 +119,8 @@
                 android:text="Siguiente"
                 android:id="@+id/btSiguiente"
                 android:layout_gravity="center_horizontal"
-                android:layout_weight="0.50" />
+                android:layout_weight="0.50"
+                android:onClick="btSiguienteOnClick" />
         </LinearLayout>
 
         <Button
@@ -125,7 +128,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Actualizar"
-            android:id="@+id/btActualizar" />
+            android:id="@+id/btActualizar"
+            android:onClick="OnClickBtActualizar" />
 
         <Button
             style="?android:attr/buttonStyleSmall"

@@ -5,6 +5,7 @@ package com.example.usuario.calculo_fct_plus;
  */
 public class Alumno 
 {
+    private long Numero;
     private String Nombre;
     private String Apellidos;
     private String Telefono;
@@ -13,11 +14,12 @@ public class Alumno
     private String Finic;
     private String Ffin;
     private String HorasPd;
-    private float NumDias;
-    private float HorasTfct;
+    private String NumDias;
+    private String HorasTfct;
     
-    public Alumno( String nombre, String apellidos, String telefono, String correo, String yeariniciofct, String finic, String ffin, String horaspd, float numdias, float horastfct)
+    public Alumno( String nombre, String apellidos, String telefono, String correo, String yeariniciofct, String finic, String ffin, String horaspd, String numdias, String horastfct)
     {
+
         Nombre=nombre;
         Apellidos=apellidos;
         Telefono=telefono;
@@ -97,19 +99,27 @@ public Alumno()
         HorasPd = horasPd;
     }
 
-    public float getNumDias() {
+    public String getNumDias() {
         return NumDias;
     }
 
-    public void setNumDias(float numDias) {
+    public void setNumDias(String numDias) {
         NumDias = numDias;
     }
 
-    public float getHorasTfct() {
+    public String getHorasTfct() {
         return HorasTfct;
     }
 
-    public void setHorasTfct(float horasTfct) {
+    public void setHorasTfct(String horasTfct) {
         HorasTfct = horasTfct;
+    }
+
+    public long getNumero() {
+        return Numero;
+    }
+
+    public void setNumero(long numero) {
+        Numero = numero;
     }
 }

@@ -5,7 +5,9 @@ package com.example.usuario.calculo_fct_plus;
  */
 public class Empresa
 {
-    private String Nombre;
+    private long numero;
+    private String NombreE;
+    private String NombreR;
     private String Apellidos;
     private String Email;
     private String Telefono;
@@ -13,9 +15,10 @@ public class Empresa
     private String Web;
 
 
-    public Empresa( String nombre, String apellidos, String email, String telefono, String direccion, String web)
+    public Empresa( String nombree,String nombrer, String apellidos, String email, String telefono, String direccion, String web)
     {
-        Nombre=nombre;
+        setNombreE(nombree);
+        setNombreR(nombrer);
         Apellidos=apellidos;
         Email=email;
         Telefono=telefono;
@@ -28,13 +31,7 @@ public class Empresa
     
     
 
-    public String getNombre() {
-        return Nombre;
-    }
 
-    public void setNombre(String nombre) {
-        Nombre = nombre;
-    }
 
     public String getApellidos() {
         return Apellidos;
@@ -74,5 +71,29 @@ public class Empresa
 
     public void setWeb(String web) {
         Web = web;
+    }
+
+    public String getNombreE() {
+        return NombreE;
+    }
+
+    public void setNombreE(String nombreE) {
+        NombreE = nombreE;
+    }
+
+    public String getNombreR() {
+        return NombreR;
+    }
+
+    public void setNombreR(String nombreR) {
+        NombreR = nombreR;
+    }
+
+    public long getNumero() {
+        return numero;
+    }
+
+    public void setNumero(long numero) {
+        this.numero = numero;
     }
 }
