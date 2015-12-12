@@ -9,7 +9,9 @@ import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +19,7 @@ import java.util.List;
 /**
  * Created by pc on 10/12/2015.
  */
-public class GestionadorBD
+public class GestionadorBD extends AppCompatActivity
 {
     public static final String KEY_ALUMNOS_ROWID = "id";
     public static final String KEY_ALUMNOS_NOMBRE = "nombre";
@@ -72,7 +74,7 @@ public class GestionadorBD
                     +KEY_ALUMNOS_HORASPD+" text , "
                     +KEY_ALUMNOS_NUMDIAS+" text , "
                     +KEY_ALUMNOS_HorasTFCT+" text ,"
-                    +KEY_FORANEA_EMPRESA+" integer );";
+                    +KEY_FORANEA_EMPRESA+" integer )";
                     
 
     private final Context context;
@@ -134,6 +136,7 @@ public class GestionadorBD
         initialValues.put(KEY_ALUMNOS_HORASPD,Al.getHorasPd());
         initialValues.put(KEY_ALUMNOS_NUMDIAS,Al.getNumDias());
         initialValues.put(KEY_ALUMNOS_HorasTFCT,Al.getHorasTfct());
+        initialValues.put(KEY_FORANEA_EMPRESA,Al.getKey_empresa());
         //manda una sentencia INSERT a la BD para insertar una fila con los valores initialValues
         return bsSql.insert(DATABASE_TABLE_ALUMNOS, null, initialValues);
     }
@@ -203,11 +206,12 @@ public class GestionadorBD
         args.put(KEY_ALUMNOS_TELEFONO, a.getTelefono());
         args.put(KEY_ALUMNOS_CORREO,a.getCorreo());
         args.put(KEY_ALUMNOS_YEARINICIOFCT,a.getYearInicioFct());
-        args.put(KEY_ALUMNOS_FINIC,a.getFinic());
+        args.put(KEY_ALUMNOS_FINIC, a.getFinic());
         args.put(KEY_ALUMNOS_FFIN,a.getFfin());
         args.put(KEY_ALUMNOS_HORASPD,a.getHorasPd());
         args.put(KEY_ALUMNOS_NUMDIAS,a.getNumDias());
         args.put(KEY_ALUMNOS_HorasTFCT,a.getHorasTfct());
+        args.put(KEY_FORANEA_EMPRESA,a.getKey_empresa());
         return bsSql.update(DATABASE_TABLE_ALUMNOS, args,KEY_ALUMNOS_ROWID + "=" + a.getNumero(), null) > 0;
     }
 
@@ -316,12 +320,33 @@ public class GestionadorBD
         a.setHorasPd(cursor.getString(8));
         a.setNumDias(cursor.getString(9));
         a.setHorasTfct(cursor.getString(10));
-
+        a.setKey_empresa(cursor.getLong(11));
         return a;
     }
 
+    public Cursor recupera_empresa_alumno(long numero){
 
-    //**** CLASE PRIVADA subclase SQLiteOpenHelper***/
+        Cursor c= null;
+        try
+        {
+            c = BDHelper.recupera_empresa_alumno(bsSql,numero);
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return(c);
+    }
+
+    public Cursor recupera_alumnos_empresa(long numero)
+    {
+        Cursor c=BDHelper.recupera_alumnos_empresa(bsSql,numero);
+        //System.out.println(c.getLong(0)+"|"+c.getLong(1)+"|"+c.getLong(2)+"|"+c.getLong(3)+"|"+c.getLong(4)+"|"+c.getLong(5)+"|"+c.getLong(6)+"|"+c.getLong(7)+"|"+c.getLong(8)+"|"+c.getLong(9)+"|"+c.getLong(10)+"|"+c.getLong(11));
+
+        return (c);
+    }
+
+
+    //**** subclase SQLiteOpenHelper***/
 
     //clase para crear la base de datos SQLite
     private static class BaseDatosHelper extends SQLiteOpenHelper
@@ -339,6 +364,7 @@ public class GestionadorBD
                 e.printStackTrace();
             }
         }
+
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion,int newVersion) {
             Log.w(TAG, "Actualizando base de datos de la versión " + oldVersion
@@ -348,6 +374,60 @@ public class GestionadorBD
             db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE_ALUMNOS+";DROP TABLE IF EXISTS " + DATABASE_TABLE_EMPRESAS);
             //crea la nueva BD
             onCreate(db);
+        }
+
+        public Cursor recupera_empresa_alumno(SQLiteDatabase db,long numero)
+        {
+
+            /*Cursor c=db.rawQuery("SELECT "+
+                    KEY_EMPRESAS_ROWID+","+
+                    KEY_EMPRESAS_NOMBRE_EMPRESA+","+
+                KEY_EMPRESAS_NOMBRE_RESPONSABLE+","+
+                    KEY_EMPRESAS_APELLIDOS+","+
+                KEY_EMPRESAS_EMAIL+","+
+                    KEY_EMPRESAS_TELEFONO+","+
+                KEY_EMPRESAS_DIRECCION+","+
+                    KEY_EMPRESAS_WEB+
+                    " FROM "+DATABASE_TABLE_EMPRESAS+
+                " WHERE "+KEY_EMPRESAS_ROWID+"="+numero, null);
+*/          String[] todasColumnas_empresas =new String[] {KEY_EMPRESAS_ROWID,
+                KEY_EMPRESAS_NOMBRE_EMPRESA,KEY_EMPRESAS_NOMBRE_RESPONSABLE,KEY_EMPRESAS_APELLIDOS,
+                KEY_EMPRESAS_EMAIL,KEY_EMPRESAS_TELEFONO,KEY_EMPRESAS_DIRECCION,
+                KEY_EMPRESAS_WEB};
+
+            Cursor c=db.query(DATABASE_TABLE_EMPRESAS,todasColumnas_empresas ,KEY_EMPRESAS_ROWID+"="+numero,null,null,null,null);
+            if (c != null)
+                c.moveToFirst();
+            return c;
+        }
+
+        public Cursor recupera_alumnos_empresa(SQLiteDatabase db,long numero)
+        {
+            /*Cursor c=db.rawQuery("SELECT " +
+                    KEY_ALUMNOS_ROWID  +","+
+                    KEY_ALUMNOS_NOMBRE +","+
+                    KEY_ALUMNOS_APELLIDOS  +","+
+                    KEY_ALUMNOS_TELEFONO  +","+
+                    KEY_ALUMNOS_CORREO  +","+
+                    KEY_ALUMNOS_YEARINICIOFCT  +","+
+                    KEY_ALUMNOS_FINIC  +","+
+                    KEY_ALUMNOS_FFIN  +","+
+                    KEY_ALUMNOS_HORASPD  +","+
+                    KEY_ALUMNOS_NUMDIAS  +","+
+                    KEY_ALUMNOS_HorasTFCT  +","+
+                    KEY_FORANEA_EMPRESA  +
+                    " FROM "+DATABASE_TABLE_ALUMNOS+" "+
+                    "WHERE "+KEY_ALUMNOS_ROWID+"="+numero,null);*/
+            String[] todasColumnas_alumnos =new String[] {KEY_ALUMNOS_ROWID,KEY_ALUMNOS_NOMBRE,
+                    KEY_ALUMNOS_APELLIDOS,KEY_ALUMNOS_TELEFONO,KEY_ALUMNOS_CORREO,KEY_ALUMNOS_YEARINICIOFCT,
+                    KEY_ALUMNOS_FINIC,KEY_ALUMNOS_FFIN,KEY_ALUMNOS_HORASPD,KEY_ALUMNOS_NUMDIAS,
+                    KEY_ALUMNOS_HorasTFCT,KEY_FORANEA_EMPRESA};
+
+            Cursor c=db.query(DATABASE_TABLE_ALUMNOS,todasColumnas_alumnos ,KEY_EMPRESAS_ROWID+"="+numero,null,null,null,null);
+            if (c != null)
+                c.moveToFirst();
+           
+            return c;
         }
     }
 

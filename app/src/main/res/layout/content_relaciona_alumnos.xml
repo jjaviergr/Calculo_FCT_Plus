@@ -26,29 +26,38 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="&lt;"
-            android:id="@+id/btAnterior"
+            android:id="@+id/btRAanterior"
             android:layout_alignTop="@+id/edNombreEmpresa"
             android:layout_toStartOf="@+id/textView2"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:onClick="btRAanteriorOnClick" />
 
         <EditText
             android:layout_width="107dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Datos de Alumnos"
-            android:id="@+id/textView3"
+            android:id="@+id/edDatos_Alumnos"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_weight="1"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:text="Alumno"
+            android:inputType="text"
+            android:textStyle="normal"
+            android:typeface="normal"
+            android:singleLine="true"
+            android:scrollIndicators="none"
+            android:enabled="false"
+            android:autoLink="none" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text=">"
-            android:id="@+id/btSiguiente"
-            android:layout_weight="1" />
+            android:id="@+id/btRASiguiente"
+            android:layout_weight="1"
+            android:onClick="btRSiguienteOnClick" />
     </LinearLayout>
 
     <LinearLayout
@@ -63,7 +72,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="text"
                 android:ems="10"
                 android:id="@+id/edNombreA"
                 android:hint="Nombre"
@@ -226,76 +235,66 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="&lt;"
-            android:id="@+id/button"
+            android:id="@+id/btREAnterior"
             android:layout_alignTop="@+id/edNombreEmpresa"
             android:layout_toStartOf="@+id/textView2"
-            android:layout_weight="1" />
+            android:layout_weight="0.76"
+            android:onClick="btREAnteriorOnClick" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Datos de Empresas"
-            android:id="@+id/editText"
+            android:id="@+id/edDatos_Empresa"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:inputType="text"
+            android:textStyle="normal"
+            android:typeface="normal"
+            android:singleLine="true"
+            android:scrollIndicators="none"
+            android:enabled="false"
+            android:layout_weight="0.64"
+            android:textAlignment="center" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text=">"
-            android:id="@+id/button2"
-            android:layout_weight="1" />
+            android:id="@+id/btREPosterior"
+            android:layout_weight="0.72"
+            android:onClick="btREPosteriorOnClick" />
     </LinearLayout>
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="34dp"
-        android:text="V"
-
-        android:id="@+id/btAsignar"
-        android:layout_marginEnd="52dp"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_below="@+id/linearLayout3"
-        android:layout_alignEnd="@+id/linearLayout3"
-        android:layout_marginTop="23dp" />
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/edNombreEmpresa">
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="34dp"
-        android:text="X"
-        android:id="@+id/button3"
-        android:layout_marginStart="34dp"
-        android:layout_alignTop="@+id/btAsignar"
-        android:layout_alignParentStart="true" />
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Asociar"
+            android:id="@+id/btAsociarDesasociar"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:onClick="btAsociarOnClick" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Desasociar"
-        android:id="@+id/textView"
-        android:layout_below="@+id/linearLayout3"
-        android:layout_alignStart="@+id/button3" />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buscar Empresa Asociada"
+            android:id="@+id/chkBuscarEmpresaAlumno"
+            android:checked="false"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:onClick="chkBuscarEmpresaAlumnoOnClick" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Asociar"
-        android:id="@+id/textView4"
-        android:layout_below="@+id/linearLayout3"
-        android:layout_alignEnd="@+id/btAsignar" />
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Situacion Actual"
-        android:id="@+id/chAsociado"
-        android:checked="false"
-        android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/textView" />
+    </RelativeLayout>
 
 </RelativeLayout>

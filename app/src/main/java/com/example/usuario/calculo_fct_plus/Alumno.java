@@ -16,6 +16,7 @@ public class Alumno
     private String HorasPd;
     private String NumDias;
     private String HorasTfct;
+    private long  key_empresa;
     
     public Alumno( String nombre, String apellidos, String telefono, String correo, String yeariniciofct, String finic, String ffin, String horaspd, String numdias, String horastfct)
     {
@@ -30,6 +31,7 @@ public class Alumno
         HorasPd=horaspd;
         NumDias=numdias;
         HorasTfct=horastfct;
+
     }
 
 public Alumno()
@@ -121,5 +123,13 @@ public Alumno()
 
     public void setNumero(long numero) {
         Numero = numero;
+    }
+
+    public long getKey_empresa() {
+        return key_empresa;
+    }
+
+    public void setKey_empresa(long key_empresa) {
+        this.key_empresa = key_empresa;
     }
 }

@@ -184,9 +184,20 @@ public class DatosEmpresaActivity extends MainActivity {
     @Override
     public void onDestroy()
     {
-        c.close();
-        BD.close();
-        super.onDestroy();
+        try
+        {
+            c.close();
+            BD.close();
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            super.onDestroy();
+        }
     }
     @Override
     public void onPause()
@@ -196,4 +207,8 @@ public class DatosEmpresaActivity extends MainActivity {
     }
 
 
+    public void onEmpresaClickSalir(View v)
+    {
+        finish();
+    }
 }

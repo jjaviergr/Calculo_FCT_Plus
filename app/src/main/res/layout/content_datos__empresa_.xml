@@ -137,6 +137,6 @@
             android:layout_height="wrap_content"
             android:text="Salir"
             android:id="@+id/btSalir"
-            android:onClick="onClickSalir" />
+            android:onClick="onEmpresaClickSalir" />
     </LinearLayout>
 </RelativeLayout>

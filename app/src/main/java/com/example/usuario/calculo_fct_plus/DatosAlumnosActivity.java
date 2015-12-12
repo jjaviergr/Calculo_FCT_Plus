@@ -240,9 +240,20 @@ public class DatosAlumnosActivity extends MainActivity {
     @Override
     public void onDestroy()
     {
-        c.close();
-        BD.close();
-        super.onDestroy();
+        try
+        {
+            c.close();
+            BD.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            super.onDestroy();
+        }
+
     }
 
     public void onClickAlumnoCalcular(View v)
@@ -271,6 +282,11 @@ public class DatosAlumnosActivity extends MainActivity {
     {
         finish();
         super.onPause();
+    }
+
+    public void onAlumnoClickSalir(View v)
+    {
+        finish();
     }
     /*
 

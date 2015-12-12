@@ -56,7 +56,8 @@
             android:layout_height="wrap_content"
             android:text="Relacionar Alumnos-Empresas"
             android:id="@+id/btRelaciona"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:onClick="btRelaciona_Alumno_Empresa" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -64,7 +65,8 @@
             android:layout_height="wrap_content"
             android:text="Gestión de Preferencias"
             android:id="@+id/btPreferences"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:onClick="btPreferencesOnClick" />
 <!--
         <Button
             style="?android:attr/buttonStyleSmall"
