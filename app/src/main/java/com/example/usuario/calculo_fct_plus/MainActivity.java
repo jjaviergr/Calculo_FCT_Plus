@@ -74,12 +74,18 @@ public class MainActivity extends AppCompatActivity
             startActivity(i);
         }
 
-        if (id==R.id.opcion4) // Salir del programa
+        if (id == R.id.opcion4) // Acceder a preferencias
+        {
+            i = new Intent(this, GestionPrefenciasActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);;
+            startActivity(i);
+        }
+
+        if (id==R.id.opcion5) // Salir del programa
         {
           finish();
         }
 
-        if (id==R.id.opcion5) // Credito al Autor.
+        if (id==R.id.opcion6) // Creditos al Autor.
         {
             Toast.makeText(this, "Hecho por José Javier García Romero" ,Toast.LENGTH_LONG).show();
         }

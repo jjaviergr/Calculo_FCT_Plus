@@ -20,9 +20,13 @@
     <item
         android:id="@+id/opcion4"
         app:showAsAction="never"
-        android:title="Volver al principal"/>
+        android:title="Preferencias de Alumnos"/>
     <item
         android:id="@+id/opcion5"
+        app:showAsAction="never"
+        android:title="Volver al principal"/>
+    <item
+        android:id="@+id/opcion6"
         app:showAsAction="never"
         android:title="Acerca de"/>
 </menu>

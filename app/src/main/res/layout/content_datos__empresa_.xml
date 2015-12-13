@@ -86,7 +86,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/edWebEmpresa"
-            android:hint="Página Web" />
+            android:hint="Página Web"
+            android:inputType="textUri|textAutoCorrect|text|textWebEditText"
+            android:textStyle="normal"
+            android:typeface="normal" />
 
         <Button
             style="?android:attr/buttonStyleSmall"

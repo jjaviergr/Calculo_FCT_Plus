@@ -65,12 +65,12 @@
                 android:id="@+id/email"
                 android:hint="Correo Electronico"
                 android:layout_weight="1"
-                android:inputType="textEmailAddress|textEmailSubject" />
+                android:inputType="textEmailAddress|textAutoComplete|textAutoCorrect|text" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="phone"
+                android:inputType="number|phone"
                 android:ems="10"
                 android:id="@+id/edTelefono"
                 android:hint="Telefono"
@@ -85,11 +85,11 @@
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="date|time"
                 android:ems="10"
                 android:id="@+id/edYearFCT"
                 android:hint="Año inicio FCT"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:inputType="number" />
 
             <EditText
                 android:layout_width="0dp"
@@ -110,7 +110,7 @@
             <EditText
                 android:layout_width="167dp"
                 android:layout_height="wrap_content"
-                android:inputType="date|time"
+                android:inputType="date"
                 android:ems="10"
                 android:id="@+id/edFechaInic"
                 android:hint="Fecha Inicio"
@@ -121,7 +121,7 @@
             <EditText
                 android:layout_width="167dp"
                 android:layout_height="wrap_content"
-                android:inputType="date|number|time"
+                android:inputType="date"
                 android:ems="10"
                 android:id="@+id/edFechaFin"
                 android:hint="Fecha Final"
@@ -140,7 +140,7 @@
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="number|numberDecimal"
+                android:inputType="number"
                 android:ems="10"
                 android:id="@+id/edHorasDia"
                 android:hint="Horas por Día"
@@ -151,7 +151,7 @@
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="number|numberDecimal"
+                android:inputType="number"
                 android:ems="10"
                 android:id="@+id/edDias"
 

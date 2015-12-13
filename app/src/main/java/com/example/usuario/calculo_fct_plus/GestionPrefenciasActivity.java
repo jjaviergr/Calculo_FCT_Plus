@@ -64,7 +64,12 @@ public class GestionPrefenciasActivity extends MainActivity {
     }
 
 
-
+    @Override
+    public void onPause()
+    {
+        finish();
+        super.onPause();
+    }
 
 
 }
