@@ -1,6 +1,8 @@
 package com.example.usuario.calculo_fct_plus;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.os.Bundle;
@@ -17,6 +19,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import static android.preference.PreferenceManager.getDefaultSharedPreferences;
+
 public class DatosAlumnosActivity extends MainActivity {
 
     private EditText tNombre,tApellidos,tTelefono,tCorreo,tYearinicfct,tFinic,tFfin,tHpd,tndias,tHtFCT;
@@ -29,6 +33,7 @@ public class DatosAlumnosActivity extends MainActivity {
     private Cursor c;
 
     private Button BtGrabar;
+    private SharedPreferences prefe;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) 
@@ -104,6 +109,8 @@ public class DatosAlumnosActivity extends MainActivity {
         }
 
 
+        //prefe=getPreferences(MODE_PRIVATE);
+        prefe = getDefaultSharedPreferences(getApplicationContext());
     }
 
     public void OnClickNuevoAlumno(View v)
@@ -118,6 +125,10 @@ public class DatosAlumnosActivity extends MainActivity {
         tHpd.setText("");
         tndias.setText("");
         tHtFCT.setText("");
+
+        tHtFCT.setText(prefe.getString("horas_totales_fct", ""));
+        tHpd.setText(prefe.getString("horas_dia", ""));
+        tYearinicfct.setText(prefe.getString("year_inicio",""));
 
         BtGrabar.setText("GUARDAR");
     }
@@ -226,6 +237,10 @@ public class DatosAlumnosActivity extends MainActivity {
         tHpd.setText("");
         tndias.setText("");
         tHtFCT.setText("");
+
+        tHtFCT.setText(prefe.getString("horas_totales_fct", ""));
+        tHpd.setText(prefe.getString("horas_dia", ""));
+        tYearinicfct.setText(prefe.getString("year_inicio",""));
     }
 
     public void btNuevaEmpresa(View v)
@@ -258,6 +273,8 @@ public class DatosAlumnosActivity extends MainActivity {
 
     public void onClickAlumnoCalcular(View v)
     {
+
+
 
         ArrayList<String> lista_Datos=new ArrayList<String>();
 

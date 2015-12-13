@@ -11,9 +11,8 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:launchMode="singleInstance">
-
+            android:launchMode="singleInstance"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,15 +22,13 @@
         <activity
             android:name=".DatosEmpresaActivity"
             android:label="@string/title_activity_datos__empresa_"
-            android:theme="@style/AppTheme.NoActionBar"
             android:launchMode="singleInstance"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CalculoActivity"
             android:label="CalculoActivity"
-            android:theme="@style/AppTheme.NoActionBar"
             android:launchMode="singleInstance"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
@@ -40,15 +37,22 @@
         <activity
             android:name=".DatosAlumnosActivity"
             android:label="DatosAlumnosActivity"
-            android:theme="@style/AppTheme.NoActionBar"
             android:launchMode="singleInstance"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".RelacionaAlumnosActivity"
             android:label="@string/title_activity_relaciona_alumnos"
-            android:theme="@style/AppTheme.NoActionBar"
             android:launchMode="singleInstance"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".GestionPrefenciasActivity"
+            android:label="@string/title_activity_gestion_prefencias"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.usuario.calculo_fct_plus.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

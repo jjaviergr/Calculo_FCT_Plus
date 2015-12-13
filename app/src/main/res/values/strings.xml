@@ -69,4 +69,5 @@
     <string name="title_activity_preferencias_pantallas">PreferenciasPantallasActivity</string>
     <string name="title_item_list">Items</string>
     <string name="title_item_detail">Item Detail</string>
+    <string name="title_activity_gestion_prefencias">GestionPrefenciasActivity</string>
 </resources>

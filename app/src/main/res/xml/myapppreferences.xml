@@ -1,4 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+<PreferenceCategory android:title="Configuración Actual de Alumnos" >
+    <EditTextPreference
+        android:hint="2000"
+        android:key="htfct"
+        android:summary="Introduce las horas Totales de FCT"
+        android:title="Horas Totales FCT" />
+    <EditTextPreference
+        android:hint="8"
+        android:key="hpd"
+        android:summary="Introduce el número de horas por día"
+        android:title="Horas por día" />
+    <EditTextPreference
+        android:hint="2016"
+        android:key="edy"
+        android:summary="Introduce el año de inicio de la FCT"
+        android:title="Año de Inicio"
+        />
+
+</PreferenceCategory>
 
 </PreferenceScreen>

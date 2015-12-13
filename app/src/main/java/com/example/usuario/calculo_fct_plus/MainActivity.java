@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity
 
     public void btPreferencesOnClick(View v)
     {
-
+        Intent i=new Intent(this,GestionPrefenciasActivity.class);
+        startActivity(i);
     }
 
     public void btSalirOnClick(View v) {
